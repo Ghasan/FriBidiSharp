@@ -1,6 +1,6 @@
 ﻿using CppSharp;
 
-namespace FribidiSharp
+namespace FriBidiSharp
 {
     class Program
     {

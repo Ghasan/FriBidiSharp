@@ -4,7 +4,7 @@ using CppSharp.Passes;
 using System;
 using System.IO;
 
-namespace FribidiSharp
+namespace FriBidiSharp
 {
     public class FriBidi : ILibrary
     {
@@ -57,7 +57,7 @@ namespace FribidiSharp
             ctx.SetNameOfEnumWithMatchingItem("FRIBIDI_CHAR_SET_UTF8", "CharSet");
 
             ctx.GenerateEnumFromMacros("Flags", "FRIBIDI_FLAG_(.*)").SetFlags();
-            ctx.GenerateEnumFromMacros("FribidiChar", "FRIBIDI_CHAR_(.*)");
+            ctx.GenerateEnumFromMacros("FriBidiChar", "FRIBIDI_CHAR_(.*)");
         }
 
         public void Postprocess(Driver driver, ASTContext ctx)
