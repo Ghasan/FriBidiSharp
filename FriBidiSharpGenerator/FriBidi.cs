@@ -11,9 +11,9 @@ namespace FriBidiSharp
         public void Setup(Driver driver)
         {
             var options = driver.Options;
-            var module = options.AddModule("fribidi");
+            var module = options.AddModule("FriBidi");
             module.Headers.Add("fribidi.h");
-            options.OutputDir = "fribidi";
+            options.OutputDir = "../../../FriBidiSharp";
 
             var parserOptions = driver.ParserOptions;
             parserOptions.AddIncludeDirs(getNativeLibraryPath());
@@ -58,6 +58,8 @@ namespace FriBidiSharp
 
             ctx.GenerateEnumFromMacros("Flags", "FRIBIDI_FLAG_(.*)").SetFlags();
             ctx.GenerateEnumFromMacros("FriBidiChar", "FRIBIDI_CHAR_(.*)");
+
+            driver.Context.TranslationUnitPasses.Passes.RemoveAll(i => i.GetType() == typeof(MarshalPrimitivePointersAsRefTypePass));
         }
 
         public void Postprocess(Driver driver, ASTContext ctx)
@@ -68,26 +70,6 @@ namespace FriBidiSharp
         {
             string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             return Path.Combine(userProfile, @"vcpkg\installed\x64-windows\include\fribidi");
-        }
-
-        private static string toPascalCase(string name)
-        {
-            string[] parts = name.Split('_');
-
-            for (int i = 0; i < parts.Length; i++)
-            {
-                string part = parts[i];
-
-                part = part.Insert(0, part.Substring(0, 1).ToUpperInvariant())
-                    .Remove(1, 1);
-
-                part = part.Insert(1, part.Substring(1).ToLowerInvariant())
-                    .Remove(part.Length, part.Length - 1);
-
-                parts[i] = part;
-            }
-
-            return String.Join(String.Empty, parts);
         }
     }
 }
