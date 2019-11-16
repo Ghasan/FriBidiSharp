@@ -57,7 +57,7 @@ namespace FriBidiSharp
             ctx.SetNameOfEnumWithMatchingItem("FRIBIDI_CHAR_SET_UTF8", "CharSet");
 
             ctx.GenerateEnumFromMacros("Flags", "FRIBIDI_FLAG_(.*)").SetFlags();
-            ctx.GenerateEnumFromMacros("FriBidiChar", "FRIBIDI_CHAR_(.*)");
+            ctx.GenerateEnumFromMacros("NamedChar", "FRIBIDI_CHAR_(.*)");
 
             driver.Context.TranslationUnitPasses.Passes.RemoveAll(i => i.GetType() == typeof(MarshalPrimitivePointersAsRefTypePass));
         }
