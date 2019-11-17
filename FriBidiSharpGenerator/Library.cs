@@ -4,9 +4,9 @@ using CppSharp.Passes;
 using System;
 using System.IO;
 
-namespace FriBidiSharp
+namespace FriBidiSharpGenerator
 {
-    public class Library : ILibrary
+    internal class Library : ILibrary
     {
         public void Setup(Driver driver)
         {
