@@ -6,7 +6,7 @@ namespace FriBidiSharp
     {
         static void Main(string[] args)
         {
-            ConsoleDriver.Run(new FriBidi());
+            ConsoleDriver.Run(new Library());
         }
     }
 }
