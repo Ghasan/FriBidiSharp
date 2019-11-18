@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriBidiSharpGenerator", "FriBidiSharpGenerator\FriBidiSharpGenerator.csproj", "{6E31F408-A585-47FB-A99C-A8FE620E078C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriBidiSharp", "FriBidiSharp\FriBidiSharp.csproj", "{377C4CD5-2B43-40FA-8462-B32E0BB5E421}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{35A7F5E9-D9A1-4D18-A1C3-D0037E9CBC31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{6E31F408-A585-47FB-A99C-A8FE620E078C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E31F408-A585-47FB-A99C-A8FE620E078C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E31F408-A585-47FB-A99C-A8FE620E078C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{377C4CD5-2B43-40FA-8462-B32E0BB5E421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{377C4CD5-2B43-40FA-8462-B32E0BB5E421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{377C4CD5-2B43-40FA-8462-B32E0BB5E421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{377C4CD5-2B43-40FA-8462-B32E0BB5E421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A7F5E9-D9A1-4D18-A1C3-D0037E9CBC31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A7F5E9-D9A1-4D18-A1C3-D0037E9CBC31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A7F5E9-D9A1-4D18-A1C3-D0037E9CBC31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A7F5E9-D9A1-4D18-A1C3-D0037E9CBC31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
