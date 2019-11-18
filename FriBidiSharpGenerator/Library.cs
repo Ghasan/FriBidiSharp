@@ -52,7 +52,7 @@ namespace FriBidiSharpGenerator
             driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REMOVE_JOINING", "RemoveJoining", RenameTargets.EnumItem);
             driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REMOVE_SPECIALS", "RemoveSpecials", RenameTargets.EnumItem);
 
-            driver.Context.TranslationUnitPasses.AddPass(new MakeInternal(driver.Generator));
+            driver.Context.TranslationUnitPasses.AddPass(new CleanupPass(driver.Generator));
         }
 
         public void Preprocess(Driver driver, ASTContext ctx)
@@ -70,12 +70,12 @@ namespace FriBidiSharpGenerator
         {
         }
 
-        private class MakeInternal : TranslationUnitPass
+        private class CleanupPass : TranslationUnitPass
         {
             private Generator _generator;
             private bool _added;
 
-            public MakeInternal(Generator generator)
+            public CleanupPass(Generator generator)
             {
                 _generator = generator;
             }
@@ -94,14 +94,19 @@ namespace FriBidiSharpGenerator
                 return true;
             }
 
+            public override bool VisitVariableDecl(Variable variable)
+            {
+                if (!base.VisitVariableDecl(variable))
+                    return false;
+
+                if (variable.LogicalOriginalName.StartsWith("fribidi_"))
+                    variable.Ignore = true;
+
+                return true;
+            }
+
             private void onUnitGenerated(GeneratorOutput generatorOutput)
             {
-                if (generatorOutput.TranslationUnit.FileName == "Std.cs")
-                {
-                    generatorOutput.TranslationUnit.Ignore = true;
-                    return;
-                }
-
                 var functionBlocks = generatorOutput.Outputs.SelectMany(i => i.FindBlocks(BlockKind.Functions));
 
                 foreach (var functionBlock in functionBlocks)
