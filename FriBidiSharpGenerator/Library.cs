@@ -1,8 +1,10 @@
 ﻿using CppSharp;
 using CppSharp.AST;
+using CppSharp.Generators;
 using CppSharp.Passes;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace FriBidiSharpGenerator
 {
@@ -13,7 +15,7 @@ namespace FriBidiSharpGenerator
             var options = driver.Options;
             var module = options.AddModule("FriBidi");
             module.Headers.Add("fribidi.h");
-            options.OutputDir = "../..";
+            options.OutputDir = getOutputDirectory();
 
             var parserOptions = driver.ParserOptions;
             parserOptions.AddIncludeDirs(getNativeLibraryPath());
@@ -49,6 +51,8 @@ namespace FriBidiSharpGenerator
             driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REMOVE_BIDI", "RemoveBidi", RenameTargets.EnumItem);
             driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REMOVE_JOINING", "RemoveJoining", RenameTargets.EnumItem);
             driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REMOVE_SPECIALS", "RemoveSpecials", RenameTargets.EnumItem);
+
+            driver.Context.TranslationUnitPasses.AddPass(new MakeInternal(driver.Generator));
         }
 
         public void Preprocess(Driver driver, ASTContext ctx)
@@ -66,10 +70,71 @@ namespace FriBidiSharpGenerator
         {
         }
 
+        private class MakeInternal : TranslationUnitPass
+        {
+            private Generator _generator;
+            private bool _added;
+
+            public MakeInternal(Generator generator)
+            {
+                _generator = generator;
+            }
+
+            public override Boolean VisitTranslationUnit(TranslationUnit unit)
+            {
+                if (!base.VisitTranslationUnit(unit))
+                    return false;
+
+                if (!_added)
+                {
+                    _added = true;
+                    _generator.OnUnitGenerated += onUnitGenerated;
+                }
+
+                return true;
+            }
+
+            private void onUnitGenerated(GeneratorOutput generatorOutput)
+            {
+                if (generatorOutput.TranslationUnit.FileName == "Std.cs")
+                {
+                    generatorOutput.TranslationUnit.Ignore = true;
+                    return;
+                }
+
+                var functionBlocks = generatorOutput.Outputs.SelectMany(i => i.FindBlocks(BlockKind.Functions));
+
+                foreach (var functionBlock in functionBlocks)
+                    functionBlock.Blocks[0].Text.StringBuilder.Replace("public", "internal");
+            }
+
+        }
+
         private static string getNativeLibraryPath()
         {
             string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            return Path.Combine(userProfile, @"vcpkg\installed\x64-windows\include\fribidi");
+
+            string[] ids = { "x86-windows", "x64-windows", "x86-linux", "x64-linux" };
+
+            foreach (string id in ids)
+            {
+                string path = Path.Combine(userProfile, $"vcpkg/installed/{id}/include/fribidi");
+
+                if (Directory.Exists(path))
+                    return path;
+            }
+
+            throw new FileNotFoundException("FriBidi headers not found");
+        }
+
+        private static string getOutputDirectory()
+        {
+            string dir = AppDomain.CurrentDomain.BaseDirectory;
+
+            while (!Path.GetFileName(dir).Equals("FriBidiSharp", StringComparison.InvariantCultureIgnoreCase))
+                dir = Directory.GetParent(dir).FullName;
+
+            return Path.Combine(dir, "FriBidiSharp");
         }
     }
 }
