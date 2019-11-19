@@ -15,6 +15,7 @@ namespace FriBidiSharpGenerator
             var options = driver.Options;
             var module = options.AddModule("FriBidi");
             module.Headers.Add("fribidi.h");
+            module.OutputNamespace = "FriBidiSharp";
             options.OutputDir = getOutputDirectory();
 
             var parserOptions = driver.ParserOptions;
@@ -108,13 +109,9 @@ namespace FriBidiSharpGenerator
             private void onUnitGenerated(GeneratorOutput generatorOutput)
             {
                 var functionBlocks = generatorOutput.Outputs.SelectMany(i => i.FindBlocks(BlockKind.Functions));
-                var namespaces = generatorOutput.Outputs.SelectMany(i => i.FindBlocks(BlockKind.Namespace));
 
                 foreach (var functionBlock in functionBlocks)
                     functionBlock.Blocks[0].Text.StringBuilder.Replace("public", "internal");
-
-                foreach (var @namespace in namespaces.SelectMany(i => i.FindBlocks(BlockKind.Unknown)))
-                    @namespace.Text.StringBuilder.Replace("FriBidi", "FriBidiSharp");
             }
 
         }
