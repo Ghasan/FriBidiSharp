@@ -82,7 +82,7 @@ namespace FriBidiSharpGenerator
                 _generator = generator;
             }
 
-            public override Boolean VisitTranslationUnit(TranslationUnit unit)
+            public override bool VisitTranslationUnit(TranslationUnit unit)
             {
                 if (!base.VisitTranslationUnit(unit))
                     return false;
