@@ -1,5 +1,6 @@
 ﻿using CppSharp;
 using CppSharp.AST;
+using CppSharp.AST.Extensions;
 using CppSharp.Generators;
 using CppSharp.Passes;
 using System;
@@ -13,7 +14,7 @@ namespace FriBidiSharpGenerator
         public void Setup(Driver driver)
         {
             var options = driver.Options;
-            var module = options.AddModule("FriBidi");
+            var module = options.AddModule("fribidi");
             module.Headers.Add("fribidi.h");
             module.OutputNamespace = "FriBidiSharp";
             options.OutputDir = getOutputDirectory();
@@ -106,12 +107,40 @@ namespace FriBidiSharpGenerator
                 return true;
             }
 
+            public override bool VisitFunctionDecl(Function function)
+            {
+                if (!base.VisitFunctionDecl(function))
+                    return false;
+
+                if (function.LogicalOriginalName.StartsWith("fribidi_"))
+                {
+                    for (int i = 0; i < function.Parameters.Count; i++)
+                    {
+                        var param = function.Parameters[i];
+
+                        if (param.Type.IsPointer() && !param.Type.GetPointee().IsPointer())
+                        {
+                            param.QualifiedType = new QualifiedType(new ArrayType()
+                            {
+                                SizeType = ArrayType.ArraySize.Incomplete,
+                                QualifiedType = new QualifiedType((CppSharp.AST.Type)param.Type.GetPointee().Clone())
+                            });
+                        }
+                    }
+                }
+
+                return true;
+            }
+
             private void onUnitGenerated(GeneratorOutput generatorOutput)
             {
-                var functionBlocks = generatorOutput.Outputs.SelectMany(i => i.FindBlocks(BlockKind.Functions));
+                var unkowns = generatorOutput.Outputs.SelectMany(i => i.FindBlocks(BlockKind.Unknown));
 
-                foreach (var functionBlock in functionBlocks)
-                    functionBlock.Blocks[0].Text.StringBuilder.Replace("public", "internal");
+                foreach (var unkown in unkowns)
+                {
+                    unkown.Text.StringBuilder.Replace("fribidi_begindecls", "Main");
+                    unkown.Text.StringBuilder.Replace("fribidi_common", "Others");
+                }
             }
 
         }
