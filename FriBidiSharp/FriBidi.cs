@@ -8,19 +8,19 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace FriBidi
+namespace FriBidiSharp
 {
-    internal unsafe partial class fribidi_common
+    public unsafe partial class Others
     {
         public partial struct __Internal
         {
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="?fribidi_debug_status@@YAHXZ")]
             internal static extern int DebugStatus();
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="?fribidi_set_debug@@YAHH@Z")]
             internal static extern int SetDebug(int state);
         }
@@ -62,169 +62,169 @@ namespace FriBidi
         NumPlusOne = 7
     }
 
-    internal unsafe partial class fribidi_begindecls
+    public unsafe partial class Main
     {
         public partial struct __Internal
         {
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_bidi_type")]
             internal static extern uint GetBidiType(uint ch);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_bidi_types")]
-            internal static extern void GetBidiTypes(uint* str, int len, uint* btypes);
+            internal static extern void GetBidiTypes(uint[] str, int len, uint[] btypes);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_bidi_type_name")]
             internal static extern global::System.IntPtr GetBidiTypeName(uint t);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_par_direction")]
-            internal static extern uint GetParDirection(uint* bidi_types, int len);
+            internal static extern uint GetParDirection(uint[] bidi_types, int len);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_par_embedding_levels_ex")]
-            internal static extern sbyte GetParEmbeddingLevelsEx(uint* bidi_types, uint* bracket_types, int len, uint* pbase_dir, sbyte* embedding_levels);
+            internal static extern sbyte GetParEmbeddingLevelsEx(uint[] bidi_types, uint[] bracket_types, int len, uint[] pbase_dir, sbyte[] embedding_levels);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_reorder_line")]
-            internal static extern sbyte ReorderLine(uint flags, uint* bidi_types, int len, int off, uint base_dir, sbyte* embedding_levels, uint* visual_str, int* map);
+            internal static extern sbyte ReorderLine(uint flags, uint[] bidi_types, int len, int off, uint base_dir, sbyte[] embedding_levels, uint[] visual_str, int[] map);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_joining_type")]
             internal static extern byte GetJoiningType(uint ch);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_joining_types")]
-            internal static extern void GetJoiningTypes(uint* str, int len, byte* jtypes);
+            internal static extern void GetJoiningTypes(uint[] str, int len, byte[] jtypes);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_joining_type_name")]
             internal static extern global::System.IntPtr GetJoiningTypeName(byte j);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_join_arabic")]
-            internal static extern void JoinArabic(uint* bidi_types, int len, sbyte* embedding_levels, byte* ar_props);
+            internal static extern void JoinArabic(uint[] bidi_types, int len, sbyte[] embedding_levels, byte[] ar_props);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_mirror_char")]
-            internal static extern int GetMirrorChar(uint ch, uint* mirrored_ch);
+            internal static extern int GetMirrorChar(uint ch, uint[] mirrored_ch);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_shape_mirroring")]
-            internal static extern void ShapeMirroring(sbyte* embedding_levels, int len, uint* str);
+            internal static extern void ShapeMirroring(sbyte[] embedding_levels, int len, uint[] str);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_bracket")]
             internal static extern uint GetBracket(uint ch);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_bracket_types")]
-            internal static extern void GetBracketTypes(uint* str, int len, uint* types, uint* btypes);
+            internal static extern void GetBracketTypes(uint[] str, int len, uint[] types, uint[] btypes);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_shape_arabic")]
-            internal static extern void ShapeArabic(uint flags, sbyte* embedding_levels, int len, byte* ar_props, uint* str);
+            internal static extern void ShapeArabic(uint flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_shape")]
-            internal static extern void Shape(uint flags, sbyte* embedding_levels, int len, byte* ar_props, uint* str);
+            internal static extern void Shape(uint flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_charset_to_unicode")]
-            internal static extern int CharsetToUnicode(global::FriBidi.CharSet char_set, [MarshalAs(UnmanagedType.LPStr)] string s, int len, uint* us);
+            internal static extern int CharsetToUnicode(global::FriBidiSharp.CharSet char_set, sbyte[] s, int len, uint[] us);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_unicode_to_charset")]
-            internal static extern int UnicodeToCharset(global::FriBidi.CharSet char_set, uint* us, int len, sbyte* s);
+            internal static extern int UnicodeToCharset(global::FriBidiSharp.CharSet char_set, uint[] us, int len, sbyte[] s);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_parse_charset")]
-            internal static extern global::FriBidi.CharSet ParseCharset([MarshalAs(UnmanagedType.LPStr)] string s);
+            internal static extern global::FriBidiSharp.CharSet ParseCharset(sbyte[] s);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_char_set_name")]
-            internal static extern global::System.IntPtr CharSetName(global::FriBidi.CharSet char_set);
+            internal static extern global::System.IntPtr CharSetName(global::FriBidiSharp.CharSet char_set);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_char_set_title")]
-            internal static extern global::System.IntPtr CharSetTitle(global::FriBidi.CharSet char_set);
+            internal static extern global::System.IntPtr CharSetTitle(global::FriBidiSharp.CharSet char_set);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_char_set_desc")]
-            internal static extern global::System.IntPtr CharSetDesc(global::FriBidi.CharSet char_set);
+            internal static extern global::System.IntPtr CharSetDesc(global::FriBidiSharp.CharSet char_set);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_mirroring_status")]
             internal static extern int MirroringStatus();
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_set_mirroring")]
             internal static extern int SetMirroring(int state);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_reorder_nsm_status")]
             internal static extern int ReorderNsmStatus();
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_set_reorder_nsm")]
             internal static extern int SetReorderNsm(int state);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_log2vis_get_embedding_levels")]
-            internal static extern sbyte Log2visGetEmbeddingLevels(uint* bidi_types, int len, uint* pbase_dir, sbyte* embedding_levels);
+            internal static extern sbyte Log2visGetEmbeddingLevels(uint[] bidi_types, int len, uint[] pbase_dir, sbyte[] embedding_levels);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_type")]
             internal static extern uint GetType(uint ch);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_type_internal")]
             internal static extern uint GetTypeInternal(uint ch);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_remove_bidi_marks")]
-            internal static extern int RemoveBidiMarks(uint* str, int len, int* positions_to_this, int* position_from_this_list, sbyte* embedding_levels);
+            internal static extern int RemoveBidiMarks(uint[] str, int len, int[] positions_to_this, int[] position_from_this_list, sbyte[] embedding_levels);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_log2vis")]
-            internal static extern sbyte Log2vis(uint* str, int len, uint* pbase_dir, uint* visual_str, int* positions_L_to_V, int* positions_V_to_L, sbyte* embedding_levels);
+            internal static extern sbyte Log2vis(uint[] str, int len, uint[] pbase_dir, uint[] visual_str, int[] positions_L_to_V, int[] positions_V_to_L, sbyte[] embedding_levels);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("FriBidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
+            [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_get_par_embedding_levels")]
-            internal static extern sbyte GetParEmbeddingLevels(uint* bidi_types, int len, uint* pbase_dir, sbyte* embedding_levels);
+            internal static extern sbyte GetParEmbeddingLevels(uint[] bidi_types, int len, uint[] pbase_dir, sbyte[] embedding_levels);
         }
 
         public static uint GetBidiType(uint ch)
@@ -233,7 +233,7 @@ namespace FriBidi
             return __ret;
         }
 
-        public static void GetBidiTypes(uint* str, int len, uint* btypes)
+        public static void GetBidiTypes(uint[] str, int len, uint[] btypes)
         {
             __Internal.GetBidiTypes(str, len, btypes);
         }
@@ -244,19 +244,19 @@ namespace FriBidi
             return Marshal.PtrToStringAnsi(__ret);
         }
 
-        public static uint GetParDirection(uint* bidi_types, int len)
+        public static uint GetParDirection(uint[] bidi_types, int len)
         {
             var __ret = __Internal.GetParDirection(bidi_types, len);
             return __ret;
         }
 
-        public static sbyte GetParEmbeddingLevelsEx(uint* bidi_types, uint* bracket_types, int len, uint* pbase_dir, sbyte* embedding_levels)
+        public static sbyte GetParEmbeddingLevelsEx(uint[] bidi_types, uint[] bracket_types, int len, uint[] pbase_dir, sbyte[] embedding_levels)
         {
             var __ret = __Internal.GetParEmbeddingLevelsEx(bidi_types, bracket_types, len, pbase_dir, embedding_levels);
             return __ret;
         }
 
-        public static sbyte ReorderLine(uint flags, uint* bidi_types, int len, int off, uint base_dir, sbyte* embedding_levels, uint* visual_str, int* map)
+        public static sbyte ReorderLine(uint flags, uint[] bidi_types, int len, int off, uint base_dir, sbyte[] embedding_levels, uint[] visual_str, int[] map)
         {
             var __ret = __Internal.ReorderLine(flags, bidi_types, len, off, base_dir, embedding_levels, visual_str, map);
             return __ret;
@@ -268,7 +268,7 @@ namespace FriBidi
             return __ret;
         }
 
-        public static void GetJoiningTypes(uint* str, int len, byte* jtypes)
+        public static void GetJoiningTypes(uint[] str, int len, byte[] jtypes)
         {
             __Internal.GetJoiningTypes(str, len, jtypes);
         }
@@ -279,18 +279,18 @@ namespace FriBidi
             return Marshal.PtrToStringAnsi(__ret);
         }
 
-        public static void JoinArabic(uint* bidi_types, int len, sbyte* embedding_levels, byte* ar_props)
+        public static void JoinArabic(uint[] bidi_types, int len, sbyte[] embedding_levels, byte[] ar_props)
         {
             __Internal.JoinArabic(bidi_types, len, embedding_levels, ar_props);
         }
 
-        public static int GetMirrorChar(uint ch, uint* mirrored_ch)
+        public static int GetMirrorChar(uint ch, uint[] mirrored_ch)
         {
             var __ret = __Internal.GetMirrorChar(ch, mirrored_ch);
             return __ret;
         }
 
-        public static void ShapeMirroring(sbyte* embedding_levels, int len, uint* str)
+        public static void ShapeMirroring(sbyte[] embedding_levels, int len, uint[] str)
         {
             __Internal.ShapeMirroring(embedding_levels, len, str);
         }
@@ -301,52 +301,52 @@ namespace FriBidi
             return __ret;
         }
 
-        public static void GetBracketTypes(uint* str, int len, uint* types, uint* btypes)
+        public static void GetBracketTypes(uint[] str, int len, uint[] types, uint[] btypes)
         {
             __Internal.GetBracketTypes(str, len, types, btypes);
         }
 
-        public static void ShapeArabic(uint flags, sbyte* embedding_levels, int len, byte* ar_props, uint* str)
+        public static void ShapeArabic(uint flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str)
         {
             __Internal.ShapeArabic(flags, embedding_levels, len, ar_props, str);
         }
 
-        public static void Shape(uint flags, sbyte* embedding_levels, int len, byte* ar_props, uint* str)
+        public static void Shape(uint flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str)
         {
             __Internal.Shape(flags, embedding_levels, len, ar_props, str);
         }
 
-        public static int CharsetToUnicode(global::FriBidi.CharSet char_set, string s, int len, uint* us)
+        public static int CharsetToUnicode(global::FriBidiSharp.CharSet char_set, sbyte[] s, int len, uint[] us)
         {
             var __ret = __Internal.CharsetToUnicode(char_set, s, len, us);
             return __ret;
         }
 
-        public static int UnicodeToCharset(global::FriBidi.CharSet char_set, uint* us, int len, sbyte* s)
+        public static int UnicodeToCharset(global::FriBidiSharp.CharSet char_set, uint[] us, int len, sbyte[] s)
         {
             var __ret = __Internal.UnicodeToCharset(char_set, us, len, s);
             return __ret;
         }
 
-        public static global::FriBidi.CharSet ParseCharset(string s)
+        public static global::FriBidiSharp.CharSet ParseCharset(sbyte[] s)
         {
             var __ret = __Internal.ParseCharset(s);
             return __ret;
         }
 
-        public static string CharSetName(global::FriBidi.CharSet char_set)
+        public static string CharSetName(global::FriBidiSharp.CharSet char_set)
         {
             var __ret = __Internal.CharSetName(char_set);
             return Marshal.PtrToStringAnsi(__ret);
         }
 
-        public static string CharSetTitle(global::FriBidi.CharSet char_set)
+        public static string CharSetTitle(global::FriBidiSharp.CharSet char_set)
         {
             var __ret = __Internal.CharSetTitle(char_set);
             return Marshal.PtrToStringAnsi(__ret);
         }
 
-        public static string CharSetDesc(global::FriBidi.CharSet char_set)
+        public static string CharSetDesc(global::FriBidiSharp.CharSet char_set)
         {
             var __ret = __Internal.CharSetDesc(char_set);
             return Marshal.PtrToStringAnsi(__ret);
@@ -376,7 +376,7 @@ namespace FriBidi
             return __ret;
         }
 
-        public static sbyte Log2visGetEmbeddingLevels(uint* bidi_types, int len, uint* pbase_dir, sbyte* embedding_levels)
+        public static sbyte Log2visGetEmbeddingLevels(uint[] bidi_types, int len, uint[] pbase_dir, sbyte[] embedding_levels)
         {
             var __ret = __Internal.Log2visGetEmbeddingLevels(bidi_types, len, pbase_dir, embedding_levels);
             return __ret;
@@ -394,19 +394,19 @@ namespace FriBidi
             return __ret;
         }
 
-        public static int RemoveBidiMarks(uint* str, int len, int* positions_to_this, int* position_from_this_list, sbyte* embedding_levels)
+        public static int RemoveBidiMarks(uint[] str, int len, int[] positions_to_this, int[] position_from_this_list, sbyte[] embedding_levels)
         {
             var __ret = __Internal.RemoveBidiMarks(str, len, positions_to_this, position_from_this_list, embedding_levels);
             return __ret;
         }
 
-        public static sbyte Log2vis(uint* str, int len, uint* pbase_dir, uint* visual_str, int* positions_L_to_V, int* positions_V_to_L, sbyte* embedding_levels)
+        public static sbyte Log2vis(uint[] str, int len, uint[] pbase_dir, uint[] visual_str, int[] positions_L_to_V, int[] positions_V_to_L, sbyte[] embedding_levels)
         {
             var __ret = __Internal.Log2vis(str, len, pbase_dir, visual_str, positions_L_to_V, positions_V_to_L, embedding_levels);
             return __ret;
         }
 
-        public static sbyte GetParEmbeddingLevels(uint* bidi_types, int len, uint* pbase_dir, sbyte* embedding_levels)
+        public static sbyte GetParEmbeddingLevels(uint[] bidi_types, int len, uint[] pbase_dir, sbyte[] embedding_levels)
         {
             var __ret = __Internal.GetParEmbeddingLevels(bidi_types, len, pbase_dir, embedding_levels);
             return __ret;
