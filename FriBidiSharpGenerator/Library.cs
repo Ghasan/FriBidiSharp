@@ -54,7 +54,9 @@ namespace FriBidiSharpGenerator
             driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REMOVE_JOINING", "RemoveJoining", RenameTargets.EnumItem);
             driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REMOVE_SPECIALS", "RemoveSpecials", RenameTargets.EnumItem);
 
-            driver.Context.TranslationUnitPasses.AddPass(new CleanupPass(driver.Generator));
+            driver.Context.TranslationUnitPasses.AddPass(new CleanupPass());
+
+            driver.Context.GeneratorOutputPasses.AddPass(new RenameOutputClasses());
         }
 
         public void Preprocess(Driver driver, ASTContext ctx)
@@ -74,28 +76,6 @@ namespace FriBidiSharpGenerator
 
         private class CleanupPass : TranslationUnitPass
         {
-            private Generator _generator;
-            private bool _added;
-
-            public CleanupPass(Generator generator)
-            {
-                _generator = generator;
-            }
-
-            public override bool VisitTranslationUnit(TranslationUnit unit)
-            {
-                if (!base.VisitTranslationUnit(unit))
-                    return false;
-
-                if (!_added)
-                {
-                    _added = true;
-                    _generator.OnUnitGenerated += onUnitGenerated;
-                }
-
-                return true;
-            }
-
             public override bool VisitVariableDecl(Variable variable)
             {
                 if (!base.VisitVariableDecl(variable))
@@ -131,10 +111,13 @@ namespace FriBidiSharpGenerator
 
                 return true;
             }
+        }
 
-            private void onUnitGenerated(GeneratorOutput generatorOutput)
+        private class RenameOutputClasses : GeneratorOutputPass
+        {
+            public override void VisitGeneratorOutput(GeneratorOutput output)
             {
-                var unkowns = generatorOutput.Outputs.SelectMany(i => i.FindBlocks(BlockKind.Unknown));
+                var unkowns = output.Outputs.SelectMany(i => i.FindBlocks(BlockKind.Unknown));
 
                 foreach (var unkown in unkowns)
                 {
@@ -142,7 +125,6 @@ namespace FriBidiSharpGenerator
                     unkown.Text.StringBuilder.Replace("fribidi_common", "Others");
                 }
             }
-
         }
 
         private static string getNativeLibraryPath()
