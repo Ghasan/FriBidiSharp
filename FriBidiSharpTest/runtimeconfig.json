@@ -1,0 +1,7 @@
+
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "..\\FriBidiSharp\\runtimes\\win-x64\\native"
+    
+  }
+}

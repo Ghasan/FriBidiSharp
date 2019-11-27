@@ -94,7 +94,7 @@ namespace FriBidiSharp
             [SuppressUnmanagedCodeSecurity]
             [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_reorder_line")]
-            internal static extern sbyte ReorderLine(uint flags, uint[] bidi_types, int len, int off, uint base_dir, sbyte[] embedding_levels, uint[] visual_str, int[] map);
+            internal static extern sbyte ReorderLine(global::FriBidiSharp.Flags flags, uint[] bidi_types, int len, int off, uint base_dir, sbyte[] embedding_levels, uint[] visual_str, int[] map);
 
             [SuppressUnmanagedCodeSecurity]
             [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
@@ -139,12 +139,12 @@ namespace FriBidiSharp
             [SuppressUnmanagedCodeSecurity]
             [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_shape_arabic")]
-            internal static extern void ShapeArabic(uint flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str);
+            internal static extern void ShapeArabic(global::FriBidiSharp.Flags flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str);
 
             [SuppressUnmanagedCodeSecurity]
             [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
                 EntryPoint="fribidi_shape")]
-            internal static extern void Shape(uint flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str);
+            internal static extern void Shape(global::FriBidiSharp.Flags flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str);
 
             [SuppressUnmanagedCodeSecurity]
             [DllImport("fribidi", CallingConvention = global::System.Runtime.InteropServices.CallingConvention.Cdecl,
@@ -256,7 +256,7 @@ namespace FriBidiSharp
             return __ret;
         }
 
-        public static sbyte ReorderLine(uint flags, uint[] bidi_types, int len, int off, uint base_dir, sbyte[] embedding_levels, uint[] visual_str, int[] map)
+        public static sbyte ReorderLine(global::FriBidiSharp.Flags flags, uint[] bidi_types, int len, int off, uint base_dir, sbyte[] embedding_levels, uint[] visual_str, int[] map)
         {
             var __ret = __Internal.ReorderLine(flags, bidi_types, len, off, base_dir, embedding_levels, visual_str, map);
             return __ret;
@@ -306,12 +306,12 @@ namespace FriBidiSharp
             __Internal.GetBracketTypes(str, len, types, btypes);
         }
 
-        public static void ShapeArabic(uint flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str)
+        public static void ShapeArabic(global::FriBidiSharp.Flags flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str)
         {
             __Internal.ShapeArabic(flags, embedding_levels, len, ar_props, str);
         }
 
-        public static void Shape(uint flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str)
+        public static void Shape(global::FriBidiSharp.Flags flags, sbyte[] embedding_levels, int len, byte[] ar_props, uint[] str)
         {
             __Internal.Shape(flags, embedding_levels, len, ar_props, str);
         }

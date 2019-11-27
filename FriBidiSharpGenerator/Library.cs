@@ -106,8 +106,15 @@ namespace FriBidiSharpGenerator
                                 QualifiedType = new QualifiedType((CppSharp.AST.Type)param.Type.GetPointee().Clone())
                             });
                         }
+                        else if (param.LogicalOriginalName == "flags")
+                        {
+                            Enumeration flags = ASTContext.FindEnum("Flags").Single();
+                            param.QualifiedType = new QualifiedType(new TagType(flags));
+                        }
                     }
                 }
+
+                
 
                 return true;
             }
