@@ -3,6 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RuntimeIdentifiers>win-x86;win-x64;linux-x64</RuntimeIdentifiers>
+    <Version>0.1.0</Version>
+    <Authors>Ghasan Al-Sakkaf</Authors>
+    <Company />
+    <Description>A .NET binding for FriBidi.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Copyright (c) 2019 Ghasan Al-Sakkaf</Copyright>
+    <PackageProjectUrl>https://github.com/Ghasan/FriBidiSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ghasan/FriBidiSharp</RepositoryUrl>
+    <PackageTags>FriBidi;FriBidiSharp;bidirectional text;bidi</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
