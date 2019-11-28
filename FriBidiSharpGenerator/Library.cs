@@ -1,11 +1,9 @@
 ﻿using CppSharp;
 using CppSharp.AST;
-using CppSharp.AST.Extensions;
-using CppSharp.Generators;
 using CppSharp.Passes;
+using FribidiSharpGenerator;
 using System;
 using System.IO;
-using System.Linq;
 
 namespace FriBidiSharpGenerator
 {
@@ -74,71 +72,14 @@ namespace FriBidiSharpGenerator
         {
         }
 
-        private class CleanupPass : TranslationUnitPass
-        {
-            public override bool VisitVariableDecl(Variable variable)
-            {
-                if (!base.VisitVariableDecl(variable))
-                    return false;
-
-                if (variable.LogicalOriginalName.StartsWith("fribidi_"))
-                    variable.Ignore = true;
-
-                return true;
-            }
-
-            public override bool VisitFunctionDecl(Function function)
-            {
-                if (!base.VisitFunctionDecl(function))
-                    return false;
-
-                if (function.LogicalOriginalName.StartsWith("fribidi_"))
-                {
-                    for (int i = 0; i < function.Parameters.Count; i++)
-                    {
-                        var param = function.Parameters[i];
-
-                        if (param.Type.IsPointer() && !param.Type.GetPointee().IsPointer())
-                        {
-                            param.QualifiedType = new QualifiedType(new ArrayType()
-                            {
-                                SizeType = ArrayType.ArraySize.Incomplete,
-                                QualifiedType = new QualifiedType((CppSharp.AST.Type)param.Type.GetPointee().Clone())
-                            });
-                        }
-                        else if (param.LogicalOriginalName == "flags")
-                        {
-                            Enumeration flags = ASTContext.FindEnum("Flags").Single();
-                            param.QualifiedType = new QualifiedType(new TagType(flags));
-                        }
-                    }
-                }
-
-                
-
-                return true;
-            }
-        }
-
-        private class RenameOutputClasses : GeneratorOutputPass
-        {
-            public override void VisitGeneratorOutput(GeneratorOutput output)
-            {
-                var unkowns = output.Outputs.SelectMany(i => i.FindBlocks(BlockKind.Unknown));
-
-                foreach (var unkown in unkowns)
-                {
-                    unkown.Text.StringBuilder.Replace("fribidi_begindecls", "Main");
-                    unkown.Text.StringBuilder.Replace("fribidi_common", "Others");
-                }
-            }
-        }
-
+        // Private
+        
         private static string getNativeLibraryPath()
         {
             string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
-            string[] ids = { "x86-windows", "x64-windows", "x86-linux", "x64-linux" };
+            // Relies on vcpkg on Windows to read fribidi.h
+            string[] ids = { "x86-windows", "x64-windows" };
 
             foreach (string id in ids)
             {
