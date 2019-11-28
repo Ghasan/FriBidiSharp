@@ -18,8 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="runtimes\win-x64\native\fribidi.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="runtimes\*\**">
+      <PackagePath>%(Identity)</PackagePath>
+      <Pack>true</Pack>
     </Content>
   </ItemGroup>
 
