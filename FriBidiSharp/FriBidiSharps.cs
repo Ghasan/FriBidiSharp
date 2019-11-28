@@ -6,19 +6,19 @@ namespace FriBidiSharp
 {
     public static class FriBidiSharpExtensions
     {
-        public static string ToUtf16String(this int[] utf32String)
+        public static string ToUtf16String(this uint[] utf32Array)
         {
             var bldr = new StringBuilder();
 
-            foreach (int utf32Char in utf32String)
+            foreach (int utf32Char in utf32Array)
                 bldr.Append(Char.ConvertFromUtf32(utf32Char));
 
             return bldr.ToString();
         }
 
-        public static int[] FromUtf16String(this string str)
+        public static uint[] ToUtf32Array(this string str)
         {
-            var list = new List<int>();
+            var list = new List<uint>();
 
             char? highSurrogate = null;
 
@@ -26,7 +26,7 @@ namespace FriBidiSharp
             {
                 if (highSurrogate != null)
                 {
-                    list.Add(Char.ConvertToUtf32(highSurrogate.Value, chr));
+                    list.Add((uint)Char.ConvertToUtf32(highSurrogate.Value, chr));
                     highSurrogate = null;
                 }
                 else if (Char.IsHighSurrogate(chr))

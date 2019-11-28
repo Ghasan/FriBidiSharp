@@ -1,22 +1,25 @@
+﻿using FriBidiSharp;
 using System;
+using System.Linq;
 using Xunit;
-using FriBidiSharp;
 
 namespace FriBidiSharpTest
 {
     public class MainTests
     {
         [Fact]
-        public void Api_LogicalToVisual()
+        public void Main_Log2vis()
         {
-            uint[] str = { 0x0628, 0x0633, 0x0645 };
-            var pbase_dir = new uint[3];
-            var visual_str = new uint[3];
-            var lv = new int[3];
-            var vl = new int[3];
-            var e = new sbyte[100];
-            //var x = Api.LogicalToVisual(str, 3, pbase_dir, visual_str, lv, vl, e);
-            var x = FriBidiSharp.Main.Log2vis(str, 3, pbase_dir, visual_str, lv, vl, e);
+            uint[] str = "سلام".ToUtf32Array();
+            var pbase_dir = new uint[str.Length];
+            var visual_str = new uint[str.Length];
+            var lv = new int[str.Length];
+            var vl = new int[str.Length];
+            var e = new sbyte[str.Length];
+            FriBidiSharp.Main.Log2vis(str, str.Length, pbase_dir, visual_str, lv, vl, e);
+
+            Assert.True(new int[] { 3, 2, 1, 0 }.SequenceEqual(vl));
+            Assert.True(new int[] { 3, 2, 1, 0 }.SequenceEqual(lv));
         }
     }
 }
