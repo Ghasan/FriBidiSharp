@@ -4,7 +4,7 @@ using FriBidiSharp;
 
 namespace FriBidiSharpTest
 {
-    public class ApiTests
+    public class MainTests
     {
         [Fact]
         public void Api_LogicalToVisual()

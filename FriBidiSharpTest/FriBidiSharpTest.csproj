@@ -16,4 +16,11 @@
     <ProjectReference Include="..\FriBidiSharp\FriBidiSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\FriBidiSharp\runtimes\win-x64\native\fribidi.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>False</Visible>
+    </Content>
+  </ItemGroup>
+
 </Project>
