@@ -12,6 +12,7 @@
     <PackageProjectUrl>https://github.com/Ghasan/FriBidiSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Ghasan/FriBidiSharp</RepositoryUrl>
     <PackageTags>FriBidi;FriBidiSharp;bidirectional text;bidi</PackageTags>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
