@@ -13,8 +13,8 @@ namespace FribidiSharpGenerator
 
             foreach (var unkown in unkowns)
             {
-                unkown.Text.StringBuilder.Replace("fribidi_begindecls", "Main");
-                unkown.Text.StringBuilder.Replace("fribidi_common", "Others");
+                unkown.Text.StringBuilder.Replace("fribidi_begindecls", "FriBidiSharpMain");
+                unkown.Text.StringBuilder.Replace("fribidi_common", "FriBidiSharpOthers");
             }
         }
     }

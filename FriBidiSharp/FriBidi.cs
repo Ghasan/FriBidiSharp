@@ -10,7 +10,7 @@ using System.Security;
 
 namespace FriBidiSharp
 {
-    public unsafe partial class Others
+    public unsafe partial class FriBidiSharpOthers
     {
         public partial struct __Internal
         {
@@ -62,7 +62,7 @@ namespace FriBidiSharp
         NumPlusOne = 7
     }
 
-    public unsafe partial class Main
+    public unsafe partial class FriBidiSharpMain
     {
         public partial struct __Internal
         {
