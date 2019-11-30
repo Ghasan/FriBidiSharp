@@ -16,7 +16,7 @@ namespace FriBidiSharpTest
             var lv = new int[str.Length];
             var vl = new int[str.Length];
             var e = new sbyte[str.Length];
-            FriBidiSharp.Main.Log2vis(str, str.Length, pbase_dir, visual_str, lv, vl, e);
+            FriBidiSharpMain.Log2vis(str, str.Length, pbase_dir, visual_str, lv, vl, e);
 
             Assert.True(new int[] { 3, 2, 1, 0 }.SequenceEqual(vl));
             Assert.True(new int[] { 3, 2, 1, 0 }.SequenceEqual(lv));
