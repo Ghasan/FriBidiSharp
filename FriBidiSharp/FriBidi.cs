@@ -47,19 +47,19 @@ namespace FriBidiSharp
         T = 12,
         L = 6,
         G = 16,
-        Junk = 17
+        JUNK = 17
     }
 
     public enum CharSet
     {
-        NotFound = 0,
+        NOT_FOUND = 0,
         UTF8 = 1,
-        CapRtl = 2,
+        CAP_RTL = 2,
         ISO8859_6 = 3,
         ISO8859_8 = 4,
         CP1255 = 5,
         CP1256 = 6,
-        NumPlusOne = 7
+        NUM_PLUS_ONE = 7
     }
 
     public unsafe partial class FriBidiSharpMain
@@ -430,10 +430,10 @@ namespace FriBidiSharp
         PS = 8233,
         ZWNJ = 8204,
         ZWJ = 8205,
-        HebrewAlef = 1488,
-        ArabicAlef = 1575,
-        ArabicZero = 1632,
-        PersianZero = 1776,
+        HEBREW_ALEF = 1488,
+        ARABIC_ALEF = 1575,
+        ARABIC_ZERO = 1632,
+        PERSIAN_ZERO = 1776,
         ZWNBSP = 65279,
         FILL = 65279
     }
@@ -441,118 +441,129 @@ namespace FriBidiSharp
     [Flags]
     public enum Flags
     {
-        ShapeMirroring = 1,
-        ReorderNsm = 2,
-        ArabPres = 256,
-        ArabLiga = 512,
-        ArabConsole = 1024,
-        RemoveBidi = 65536,
-        RemoveJoining = 131072,
-        RemoveSpecials = 262144
+        SHAPE_MIRRORING = 1,
+        REORDER_NSM = 2,
+        SHAPE_ARAB_PRES = 256,
+        SHAPE_ARAB_LIGA = 512,
+        SHAPE_ARAB_CONSOLE = 1024,
+        REMOVE_BIDI = 65536,
+        REMOVE_JOINING = 131072,
+        REMOVE_SPECIALS = 262144
     }
 
     [Flags]
     public enum TypeMasks
     {
-        FRIBIDI_MASK_RTL = 1,
-        FRIBIDI_MASK_ARABIC = 2,
-        FRIBIDI_MASK_STRONG = 16,
-        FRIBIDI_MASK_WEAK = 32,
-        FRIBIDI_MASK_NEUTRAL = 64,
-        FRIBIDI_MASK_SENTINEL = 128,
-        FRIBIDI_MASK_LETTER = 256,
-        FRIBIDI_MASK_NUMBER = 512,
-        FRIBIDI_MASK_NUMSEPTER = 1024,
-        FRIBIDI_MASK_SPACE = 2048,
-        FRIBIDI_MASK_EXPLICIT = 4096,
-        FRIBIDI_MASK_ISOLATE = 32768,
-        FRIBIDI_MASK_SEPARATOR = 8192,
-        FRIBIDI_MASK_OVERRIDE = 16384,
-        FRIBIDI_MASK_FIRST = 33554432,
-        FRIBIDI_MASK_ES = 65536,
-        FRIBIDI_MASK_ET = 131072,
-        FRIBIDI_MASK_CS = 262144,
-        FRIBIDI_MASK_NSM = 524288,
-        FRIBIDI_MASK_BN = 1048576,
-        FRIBIDI_MASK_BS = 2097152,
-        FRIBIDI_MASK_SS = 4194304,
-        FRIBIDI_MASK_WS = 8388608,
-        FRIBIDI_MASK_PRIVATE = 16777216
+        RTL = 1,
+        ARABIC = 2,
+        STRONG = 16,
+        WEAK = 32,
+        NEUTRAL = 64,
+        SENTINEL = 128,
+        LETTER = 256,
+        NUMBER = 512,
+        NUMSEPTER = 1024,
+        SPACE = 2048,
+        EXPLICIT = 4096,
+        ISOLATE = 32768,
+        SEPARATOR = 8192,
+        OVERRIDE = 16384,
+        FIRST = 33554432,
+        ES = 65536,
+        ET = 131072,
+        CS = 262144,
+        NSM = 524288,
+        BN = 1048576,
+        BS = 2097152,
+        SS = 4194304,
+        WS = 8388608,
+        PRIVATE = 16777216
     }
 
     public enum Type
     {
-        FRIBIDI_TYPE_LTR_VAL = 272,
-        FRIBIDI_TYPE_RTL_VAL = 273,
-        FRIBIDI_TYPE_AL_VAL = 275,
-        FRIBIDI_TYPE_LRE_VAL = 4112,
-        FRIBIDI_TYPE_RLE_VAL = 4113,
-        FRIBIDI_TYPE_LRO_VAL = 20496,
-        FRIBIDI_TYPE_RLO_VAL = 20497,
-        FRIBIDI_TYPE_PDF_VAL = 4128,
-        FRIBIDI_TYPE_EN_VAL = 544,
-        FRIBIDI_TYPE_AN_VAL = 546,
-        FRIBIDI_TYPE_ES_VAL = 66592,
-        FRIBIDI_TYPE_ET_VAL = 132128,
-        FRIBIDI_TYPE_CS_VAL = 263200,
-        FRIBIDI_TYPE_NSM_VAL = 524320,
-        FRIBIDI_TYPE_BN_VAL = 1050656,
-        FRIBIDI_TYPE_BS_VAL = 2107456,
-        FRIBIDI_TYPE_SS_VAL = 4204608,
-        FRIBIDI_TYPE_WS_VAL = 8390720,
-        FRIBIDI_TYPE_ON_VAL = 64,
-        FRIBIDI_TYPE_WLTR_VAL = 32,
-        FRIBIDI_TYPE_WRTL_VAL = 33,
-        FRIBIDI_TYPE_SENTINEL = 128,
-        FRIBIDI_TYPE_PRIVATE = 16777216,
-        FRIBIDI_TYPE_LRI_VAL = 32832,
-        FRIBIDI_TYPE_RLI_VAL = 32833,
-        FRIBIDI_TYPE_FSI_VAL = 33587264,
-        FRIBIDI_TYPE_PDI_VAL = 32864,
-        FRIBIDI_TYPE_LTR = 272,
-        FRIBIDI_TYPE_RTL = 273,
-        FRIBIDI_TYPE_AL = 275,
-        FRIBIDI_TYPE_EN = 544,
-        FRIBIDI_TYPE_AN = 546,
-        FRIBIDI_TYPE_ES = 66592,
-        FRIBIDI_TYPE_ET = 132128,
-        FRIBIDI_TYPE_CS = 263200,
-        FRIBIDI_TYPE_NSM = 524320,
-        FRIBIDI_TYPE_BN = 1050656,
-        FRIBIDI_TYPE_BS = 2107456,
-        FRIBIDI_TYPE_SS = 4204608,
-        FRIBIDI_TYPE_WS = 8390720,
-        FRIBIDI_TYPE_ON = 64,
-        FRIBIDI_TYPE_LRE = 4112,
-        FRIBIDI_TYPE_RLE = 4113,
-        FRIBIDI_TYPE_LRO = 20496,
-        FRIBIDI_TYPE_RLO = 20497,
-        FRIBIDI_TYPE_PDF = 4128,
-        FRIBIDI_TYPE_LRI = 32832,
-        FRIBIDI_TYPE_RLI = 32833,
-        FRIBIDI_TYPE_FSI = 33587264,
-        FRIBIDI_TYPE_PDI = 32864,
-        FRIBIDI_TYPE_WLTR = 32,
-        FRIBIDI_TYPE_WRTL = 33
+        LTR_VAL = 272,
+        RTL_VAL = 273,
+        AL_VAL = 275,
+        LRE_VAL = 4112,
+        RLE_VAL = 4113,
+        LRO_VAL = 20496,
+        RLO_VAL = 20497,
+        PDF_VAL = 4128,
+        EN_VAL = 544,
+        AN_VAL = 546,
+        ES_VAL = 66592,
+        ET_VAL = 132128,
+        CS_VAL = 263200,
+        NSM_VAL = 524320,
+        BN_VAL = 1050656,
+        BS_VAL = 2107456,
+        SS_VAL = 4204608,
+        WS_VAL = 8390720,
+        ON_VAL = 64,
+        WLTR_VAL = 32,
+        WRTL_VAL = 33,
+        SENTINEL = 128,
+        PRIVATE = 16777216,
+        LRI_VAL = 32832,
+        RLI_VAL = 32833,
+        FSI_VAL = 33587264,
+        PDI_VAL = 32864,
+        LTR = 272,
+        RTL = 273,
+        AL = 275,
+        EN = 544,
+        AN = 546,
+        ES = 66592,
+        ET = 132128,
+        CS = 263200,
+        NSM = 524320,
+        BN = 1050656,
+        BS = 2107456,
+        SS = 4204608,
+        WS = 8390720,
+        ON = 64,
+        LRE = 4112,
+        RLE = 4113,
+        LRO = 20496,
+        RLO = 20497,
+        PDF = 4128,
+        LRI = 32832,
+        RLI = 32833,
+        FSI = 33587264,
+        PDI = 32864,
+        WLTR = 32,
+        WRTL = 33
     }
 
-    public enum DeprecatedType
+    public enum ParagraphType
     {
-        FRIBIDI_PAR_LTR = 272,
-        FRIBIDI_PAR_RTL = 273,
-        FRIBIDI_PAR_ON = 64,
-        FRIBIDI_PAR_WLTR = 32,
-        FRIBIDI_PAR_WRTL = 33
+        LTR = 272,
+        RTL = 273,
+        ON = 64,
+        WLTR = 32,
+        WRTL = 33
     }
 
     [Flags]
     public enum JoinMasks
     {
-        FRIBIDI_MASK_JOINS_RIGHT = 1,
-        FRIBIDI_MASK_JOINS_LEFT = 2,
-        FRIBIDI_MASK_ARAB_SHAPES = 4,
-        FRIBIDI_MASK_TRANSPARENT = 8,
-        FRIBIDI_MASK_IGNORED = 16,
-        FRIBIDI_MASK_LIGATURED = 32
+        JOINS_RIGHT = 1,
+        JOINS_LEFT = 2,
+        ARAB_SHAPES = 4,
+        TRANSPARENT = 8,
+        IGNORED = 16,
+        LIGATURED = 32
+    }
+
+    public enum DeprecatedType
+    {
+        WL = 32,
+        WR = 33,
+        L = 272,
+        R = 273,
+        N = 64,
+        B = 2107456,
+        S = 4204608
     }
 }

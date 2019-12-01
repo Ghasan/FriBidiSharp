@@ -30,35 +30,15 @@ namespace FriBidiSharpGenerator
         {
             driver.Context.TranslationUnitPasses.RemovePrefix("fribidi");
 
-            driver.Context.TranslationUnitPasses.RenameWithPattern("(^FRIBIDI_JOINING_TYPE_([A-Z])$)", "$2", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_JOINING_TYPE_JUNK", "Junk", RenameTargets.EnumItem);
-
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_SET_NOT_FOUND", "NotFound", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_SET_UTF8", "UTF8", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_SET_CAP_RTL", "CapRtl", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_SET_ISO8859_6", "ISO8859_6", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_SET_ISO8859_8", "ISO8859_8", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_SET_CP1255", "CP1255", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_SET_CP1256", "CP1256", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_SETS_NUM_PLUS_ONE", "NumPlusOne", RenameTargets.EnumItem);
-
-            driver.Context.TranslationUnitPasses.RenameWithPattern("(^FRIBIDI_CHAR_([A-Z]+)$)", "$2", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_HEBREW_ALEF", "HebrewAlef", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_ARABIC_ALEF", "ArabicAlef", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_ARABIC_ZERO", "ArabicZero", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_PERSIAN_ZERO", "PersianZero", RenameTargets.EnumItem);
-
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_SHAPE_MIRRORING", "ShapeMirroring", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REORDER_NSM", "ReorderNsm", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_SHAPE_ARAB_PRES", "ArabPres", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_SHAPE_ARAB_LIGA", "ArabLiga", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_SHAPE_ARAB_CONSOLE", "ArabConsole", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REMOVE_BIDI", "RemoveBidi", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REMOVE_JOINING", "RemoveJoining", RenameTargets.EnumItem);
-            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_REMOVE_SPECIALS", "RemoveSpecials", RenameTargets.EnumItem);
+            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_JOINING_TYPE_(.*)", "$1", RenameTargets.EnumItem);
+            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_SETS?_(.*)", "$1", RenameTargets.EnumItem);
+            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_CHAR_(.*)", "$1", RenameTargets.EnumItem);
+            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_FLAG_(.*)", "$1", RenameTargets.EnumItem);
+            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_TYPE_(.*)", "$1", RenameTargets.EnumItem);
+            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_PAR_(.*)", "$1", RenameTargets.EnumItem);
+            driver.Context.TranslationUnitPasses.RenameWithPattern("FRIBIDI_MASK_(.*)", "$1", RenameTargets.EnumItem);
 
             driver.Context.TranslationUnitPasses.AddPass(new CleanupPass());
-
             driver.Context.GeneratorOutputPasses.AddPass(new RenameOutputClasses());
         }
 
@@ -128,6 +108,7 @@ namespace FriBidiSharpGenerator
 
             ctx.GenerateEnumFromMacros("Type", "FRIBIDI_TYPE_(.*)");
             ctx.GenerateEnumFromMacros("DeprecatedType", getDeprecatedTypes());
+            ctx.GenerateEnumFromMacros("ParagraphType", "FRIBIDI_PAR_(.*)");
 
             driver.Context.TranslationUnitPasses.Passes.RemoveAll(i => i.GetType() == typeof(MarshalPrimitivePointersAsRefTypePass));
         }
@@ -183,13 +164,13 @@ namespace FriBidiSharpGenerator
         {
             return new string[]
             {
-                "FRIBIDI_PAR_WLTR",
-                "FRIBIDI_PAR_WRTL",
-                "FRIBIDI_PAR_LTR",
-                "FRIBIDI_PAR_RTL",
-                "FRIBIDI_PAR_ON",
-                "FRIBIDI_TYPE_BS",
-                "FRIBIDI_TYPE_SS",
+                "FRIBIDI_TYPE_WL",
+                "FRIBIDI_TYPE_WR",
+                "FRIBIDI_TYPE_L",
+                "FRIBIDI_TYPE_N",
+                "FRIBIDI_TYPE_B",
+                "FRIBIDI_TYPE_R",
+                "FRIBIDI_TYPE_S",
             };
         }
     }
