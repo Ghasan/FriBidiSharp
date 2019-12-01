@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RuntimeIdentifiers>win-x86;win-x64;linux-x64</RuntimeIdentifiers>
-    <Version>0.2.0</Version>
+    <Version>0.3.0-beta</Version>
     <Authors>Ghasan Al-Sakkaf</Authors>
     <Company />
     <Description>A .NET binding for FriBidi.</Description>
