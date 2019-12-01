@@ -40,6 +40,9 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodingSeb.ExpressionEvaluator, Version=1.4.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodingSeb.ExpressionEvaluator.1.4.5\lib\net45\CodingSeb.ExpressionEvaluator.dll</HintPath>
+    </Reference>
     <Reference Include="CppSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CppSharp.0.10.1\lib\CppSharp.dll</HintPath>
     </Reference>
